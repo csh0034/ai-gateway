@@ -42,12 +42,12 @@ LLM Providers
 
 LiteLLM proxy 단독, Portkey 단독, OpenRouter 같은 호스팅형이 여기에 해당. SDK 임베드형(`litellm.completion()` 호출)도 본질적으로 이 패턴.
 
-### 패턴 2 — 분리형 (운영 규모 커질 때 흔함, KT KORA 사례)
+### 패턴 2 — 분리형 (운영 규모 커질 때 흔함)
 
 ```
 Application
    ↓
-① Application Gateway          ← 일반 API 게이트웨이 (예: Azure APIM, Kong)
+① API Gateway                   ← 일반 API 게이트웨이 (예: Azure APIM, Kong)
    ↓                              인증/감사/rate limit/외부 노출 책임
 ② LLM Router                    ← 모델 선택 결정
    ↓                              (Rule-based / Semantic / Static)
@@ -58,7 +58,11 @@ LLM Providers
 
 이 패턴에서는 **Router 가 Model Gateway(LiteLLM 등) 앞**에 온다. "AI Gateway"라는 단어는 ① 을 가리킬 수도, ③ 을 가리킬 수도 있어 혼란이 생긴다.
 
-KT 의 [KORA 아키텍처](https://enterprise.kt.com/bt/dxstory/3691.do) 가 정확히 이 구조 — Application Gateways → KORA(Routing Controller / Dynamic Router / Static Router) → LiteLLM(Model manager/handler) → Target models.
+### 참고: KT KORA 사례
+
+KT 의 [KORA 아키텍처 소개 글](https://enterprise.kt.com/bt/dxstory/3691.do) 본문에는 LiteLLM 이 "사용자, LLM, 그리고 라우팅 컨트롤러 사이를 이어주는 메신저이자 관문" 으로 기술되어 있다 — 위 패턴 2와는 다르게, LiteLLM 이 라우팅 컨트롤러의 **앞단** 관문 역할로 위치한다는 읽기가 가능하다.
+
+다만 해당 페이지는 다이어그램 위주여서 텍스트 추출만으로 박스 배치를 단정하기는 어렵다. KORA 가 분리형 패턴의 대표 사례로 자주 인용되지만, 정확한 컴포넌트 배치(특히 LiteLLM 의 위치)는 원문 다이어그램을 직접 확인하는 편이 안전하다.
 
 ## 그래서 어느 게 앞이냐?
 
@@ -67,7 +71,7 @@ KT 의 [KORA 아키텍처](https://enterprise.kt.com/bt/dxstory/3691.do) 가 정
 | 문맥 | "AI Gateway" 가 가리키는 것 | Router 대비 위치 |
 |---|---|---|
 | LiteLLM/Portkey 단독 사용 글 | 통합 컴포넌트 (A+B) | "Gateway 안에 라우팅 기능이 들어있다" |
-| KORA 같은 분리형 아키텍처 글 | 보통 ① Application Gateway | Gateway(①) → Router → Model Gateway(③) |
+| 분리형 아키텍처 글 | 보통 ① API Gateway | Gateway(①) → Router → Model Gateway(③) |
 | OpenRouter 같은 호스팅 SaaS 글 | 통합 컴포넌트 (A+B) | 라우팅을 게이트웨이가 흡수 |
 
 **기억할 패턴**: 본격적인 분리형 운영에서는 보통 **"API Gateway → Router → Model Gateway"** 순서다. 단순 OSS 통합 (LiteLLM 단독 등) 글에서는 라우팅이 게이트웨이 안에 흡수되어 있어 "Gateway 가 앞" 처럼 보일 뿐이다.
