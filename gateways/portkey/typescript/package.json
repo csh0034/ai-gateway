@@ -1,0 +1,17 @@
+{
+  "name": "portkey-example",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "tsx chat.ts"
+  },
+  "dependencies": {
+    "portkey-ai": "^1.10.0",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.0",
+    "@types/node": "^22.0.0"
+  }
+}
