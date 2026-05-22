@@ -1,0 +1,56 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.egg
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pytype/
+.coverage
+htmlcov/
+
+# --- Node / TypeScript ---
+node_modules/
+dist/
+build/
+out/
+*.tsbuildinfo
+.pnpm-store/
+.npm/
+.yarn/
+.next/
+.nuxt/
+
+# --- Env / Secrets ---
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.crt
+secrets/
+
+# --- Editors / OS ---
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+Thumbs.db
+
+# --- Logs / Runtime ---
+*.log
+logs/
+pids/
+*.pid
+*.seed
+
+# --- Claude / AI tooling local artifacts ---
+*.local.md
+.claude/cache/
