@@ -6,7 +6,7 @@ AI Gateway 서비스 사용 예제 모음.
 
 | 서비스 | 라이선스 | 언어 | 한 줄 강점 |
 |---|---|---|---|
-| [litellm](./litellm/) | OSS (MIT) | Python only | SDK 임베드로 100+ provider 통합 호출, 별도 서버 불필요 |
+| [litellm](./litellm/) | OSS (MIT, `enterprise/`는 상용) | Python only | SDK 임베드로 100+ provider 통합 호출, 별도 서버 불필요 |
 
 ## 제외된 게이트웨이
 

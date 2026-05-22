@@ -1,6 +1,6 @@
 # LiteLLM
 
-100+ LLM provider 를 단일 OpenAI 호환 인터페이스로 호출하는 OSS 게이트웨이.
+100+ LLM provider 를 단일 OpenAI 호환 인터페이스로 호출하는 OSS 게이트웨이. 메인 패키지는 MIT 라이선스이며, `enterprise/` 디렉토리는 별도 상용 라이선스로 분리되어 있다.
 
 ## 강점
 

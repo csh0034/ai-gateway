@@ -33,7 +33,7 @@ ai-gateway/
 
 | 카테고리 | 서비스 | 라이선스 | 언어 |
 |---|---|---|---|
-| Gateway | LiteLLM | OSS (MIT) | Python only |
+| Gateway | LiteLLM | OSS (MIT, `enterprise/` 디렉토리는 별도 상용) | Python only |
 | Router  | RouteLLM | OSS (Apache 2.0) | Python only |
 
 ## 예제 실행 원칙
