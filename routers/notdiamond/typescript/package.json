@@ -1,0 +1,16 @@
+{
+  "name": "ai-gateway-notdiamond-ts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "route": "tsx route.ts"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "notdiamond": "^2.2.8"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}
