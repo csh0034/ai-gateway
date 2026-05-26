@@ -54,3 +54,4 @@ pids/
 # --- Claude / AI tooling local artifacts ---
 *.local.md
 .claude/cache/
+.claude/settings.local.json
