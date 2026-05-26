@@ -1,0 +1,16 @@
+{
+  "name": "ai-gateway-portkey-ts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "chat": "tsx chat.ts"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "portkey-ai": "^1.10.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}
