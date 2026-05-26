@@ -1,27 +1,20 @@
 # AI Gateway vs LLM Router
 
-자주 혼용되지만 책임 레이어가 다르다. 그리고 **"AI Gateway"라는 단어 자체가 두 가지 의미로 쓰이기 때문에** 다이어그램에서 위치가 헷갈리는 경우가 많다. 먼저 용어부터 정리한다.
+자주 혼용되지만 책임 레이어가 다르다. 본 문서에서 **AI Gateway** 는 provider 통합 호출 컴포넌트(LiteLLM, Portkey gateway 등)를 의미한다. OpenAI / Anthropic / Bedrock 등 서로 다른 API 를 단일 인터페이스로 묶고 토큰/비용 추적, fallback 을 담당하는 레이어다.
 
-## "AI Gateway" 의 두 가지 의미
-
-| 의미 | 별칭 | 책임 | 위치 |
-|---|---|---|---|
-| (A) **앞단 게이트웨이** | API Gateway, Application Gateway | 인증·요금·rate limit·감사·외부 노출 | 최전단 (사용자 ↔ 시스템 경계) |
-| (B) **모델 핸들러** | Model Gateway, Model Handler, Provider 통합 SDK | provider 별 API 호출 통합, 토큰/비용 추적, fallback | 뒤쪽 (라우팅 결정 후, 실제 모델 호출 직전) |
-
-같은 제품도 두 가지 역할을 다 하기도 한다 (예: LiteLLM proxy 는 단독 사용 시 (A)+(B) 모두 수행, KORA 같은 라우터와 결합되면 (B) 만 담당).
+> 참고: Kong / Azure APIM / AWS 같은 **API Gateway 벤더가 자기 제품의 AI 확장을 "AI Gateway"로 부르는 경우**도 있다. 외부 자료를 읽을 때는 그 글이 말하는 "AI Gateway" 가 (a) API Gateway 의 AI 확장인지, (b) LLM provider 통합 컴포넌트인지 먼저 확인하는 편이 안전하다. 본 문서는 (b) 의 의미로 통일해 사용한다.
 
 ## 한 줄 요약
 
 - **Proxy**: 요청을 그대로 전달하는 운송 레이어.
 - **Router**: 어떤 모델/제공자에게 보낼지 결정하는 의사결정 레이어.
-- **AI Gateway**: 위 (A) 또는 (B) — 문맥마다 다름.
+- **AI Gateway**: provider 통합 호출 컴포넌트. 단일 인터페이스 + 토큰/비용 추적 + fallback.
 
 대부분의 상용 플랫폼은 셋을 합쳐 "통합 API + 라우팅 + 정책"으로 제공한다.
 
 ## 책임 비교
 
-| 항목 | API Gateway (A) | LLM Router | Model Gateway (B) |
+| 항목 | API Gateway | LLM Router | AI Gateway |
 |---|---|---|---|
 | 1차 목적 | 외부 노출/보호 | 적합한 모델 선택 | provider 호출 통합 |
 | 결정 기준 | 정책(예산, 권한, 한도) | 프롬프트 특성(난이도, 도메인) | (결정 안 함, 위임 받음) |
@@ -51,12 +44,12 @@ Application
    ↓                              인증/감사/rate limit/외부 노출 책임
 ② LLM Router                    ← 모델 선택 결정
    ↓                              (Rule-based / Semantic / Static)
-③ Model Gateway                 ← provider 통합 호출 (예: LiteLLM)
+③ AI Gateway                    ← provider 통합 호출 (예: LiteLLM)
    ↓                              여기서 토큰/비용 추적, fallback
 LLM Providers
 ```
 
-이 패턴에서는 **Router 가 Model Gateway(LiteLLM 등) 앞**에 온다. "AI Gateway"라는 단어는 ① 을 가리킬 수도, ③ 을 가리킬 수도 있어 혼란이 생긴다.
+이 패턴에서는 **Router 가 AI Gateway(LiteLLM 등) 앞**에 온다.
 
 ### 참고: KT KORA 사례
 
@@ -64,17 +57,9 @@ KT 의 [KORA 아키텍처 소개 글](https://enterprise.kt.com/bt/dxstory/3691.
 
 다만 해당 페이지는 다이어그램 위주여서 텍스트 추출만으로 박스 배치를 단정하기는 어렵다. KORA 가 분리형 패턴의 대표 사례로 자주 인용되지만, 정확한 컴포넌트 배치(특히 LiteLLM 의 위치)는 원문 다이어그램을 직접 확인하는 편이 안전하다.
 
-## 그래서 어느 게 앞이냐?
+## 기억할 배치 순서
 
-상황별로 답이 다르다:
-
-| 문맥 | "AI Gateway" 가 가리키는 것 | Router 대비 위치 |
-|---|---|---|
-| LiteLLM/Portkey 단독 사용 글 | 통합 컴포넌트 (A+B) | "Gateway 안에 라우팅 기능이 들어있다" |
-| 분리형 아키텍처 글 | 보통 ① API Gateway | Gateway(①) → Router → Model Gateway(③) |
-| OpenRouter 같은 호스팅 SaaS 글 | 통합 컴포넌트 (A+B) | 라우팅을 게이트웨이가 흡수 |
-
-**기억할 패턴**: 본격적인 분리형 운영에서는 보통 **"API Gateway → Router → Model Gateway"** 순서다. 단순 OSS 통합 (LiteLLM 단독 등) 글에서는 라우팅이 게이트웨이 안에 흡수되어 있어 "Gateway 가 앞" 처럼 보일 뿐이다.
+본격적인 분리형 운영에서는 보통 **"API Gateway → Router → AI Gateway"** 순서다. 단순 OSS 통합(LiteLLM 단독 등) 글에서는 라우팅이 AI Gateway 안에 흡수되어 있어 "Gateway 가 앞" 처럼 보일 뿐이다.
 
 ## 선택 기준
 
@@ -82,11 +67,10 @@ KT 의 [KORA 아키텍처 소개 글](https://enterprise.kt.com/bt/dxstory/3691.
 |---|---|
 | 빠른 프로토타입, 다수 provider 통합 호출 | LiteLLM (Python) — 통합형, SDK 임베드 |
 | 본격 운영: 외부 노출 + 정책 | 기존 API Gateway(Kong/APIM) 앞에 두고 LLM 스택은 뒤에 |
-| 본격 운영: 모델 선택 자동화 | LLM Router 별도 (RouteLLM 등) + 뒤에 LiteLLM 같은 Model Gateway |
-| 옵저버빌리티 우선 (비용/지연 추적) | Model Gateway 단의 로깅 활용 (LiteLLM 의 콜백 등) |
+| 본격 운영: 모델 선택 자동화 | LLM Router 별도 (RouteLLM 등) + 뒤에 LiteLLM 같은 AI Gateway |
+| 옵저버빌리티 우선 (비용/지연 추적) | AI Gateway 단의 로깅 활용 (LiteLLM 의 콜백 등) |
 
 ## 주의점
 
 - Gateway 단의 fallback 과 Router 는 다른 문제다. fallback 은 "장애 시 다른 모델", Router 는 "처음부터 다른 모델".
 - 학습형 Router(예: RouteLLM)는 학습된 도메인 밖에서 성능이 떨어질 수 있음 — 도메인 평가셋으로 임계값 재튜닝 필요.
-- "AI Gateway" 라는 단어가 다이어그램마다 가리키는 대상이 달라 — 글을 읽을 때 "이 글이 말하는 AI Gateway 가 (A) 인지 (B) 인지 (A+B) 통합형인지" 먼저 확인.
