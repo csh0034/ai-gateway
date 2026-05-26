@@ -2,6 +2,11 @@
 
 LMSYS의 학습 기반 LLM 라우터. 입력 질의의 난이도를 추정해 **강모델/약모델** 사이에서 자동 선택, 품질 손실을 최소화하며 비용을 줄인다.
 
+## 라이선스 / 비용
+
+- **라이선스**: OSS (Apache 2.0).
+- **비용**: 무료. (강/약모델 호출 자체에는 각 provider 의 사용료 발생)
+
 ## 강점
 
 - 동일 인터페이스(`Controller.chat.completions.create`)에 모델명을 `router-<router>-<threshold>` 형식으로 넘기면 라우팅 적용.
@@ -26,7 +31,7 @@ RouteLLM 은 두 가지 경로로 쓸 수 있습니다. 라우터 코어는 동�
 | **Controller (SDK)** | `Controller(...)` 객체로 직접 호출 — Python 앱에 임베드 | Python 앱에서 자체 라우팅 적용, 최소 의존 | ✅ |
 | **OpenAI 호환 서버** | `python -m routellm.openai_server ...` 로 HTTP 서버 실행 | 다른 언어/도구가 OpenAI SDK 의 `baseURL` 만 바꿔 사용 | ❌ (별도 프로세스) |
 
-> 이 저장소는 채택 기준(SDK 임베드, 별도 프로세스 불요) 에 따라 **Controller 모드만** 예제로 다룹니다. 서버 모드는 다언어 통합이 필요할 때 검토할 수 있는 경로입니다.
+> 본 폴더는 **Controller 모드만** 예제로 다룹니다. 서버 모드는 다언어 통합이 필요할 때 검토할 수 있는 경로입니다.
 
 ## TypeScript 지원
 

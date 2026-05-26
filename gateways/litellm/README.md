@@ -1,6 +1,11 @@
 # LiteLLM
 
-100+ LLM provider 를 단일 OpenAI 호환 인터페이스로 호출하는 OSS 게이트웨이. 메인 패키지는 MIT 라이선스이며, `enterprise/` 디렉토리는 별도 상용 라이선스로 분리되어 있다.
+100+ LLM provider 를 단일 OpenAI 호환 인터페이스로 호출하는 게이트웨이.
+
+## 라이선스 / 비용
+
+- **라이선스**: OSS. 메인 패키지는 MIT, `enterprise/` 디렉토리는 별도 상용 라이선스로 분리.
+- **비용**: SDK·OSS Proxy 자체는 무료. LiteLLM Cloud / Enterprise (관리 UI, SSO, 감사 로그 등)는 유료.
 
 ## 강점
 
@@ -27,7 +32,7 @@ LiteLLM 은 두 가지 경로로 쓸 수 있습니다. 같은 라우팅·폴백�
 | **Python SDK** | `import litellm` — 내 앱 프로세스에 임베드 | 한 앱에서 직접 LLM 호출, 라우팅·폴백·비용 추적이 목표 | ✅ |
 | **Proxy / Gateway** | `litellm --config ...` 로 별도 게이트웨이 프로세스 실행 (Docker 권장) + Postgres | 여러 팀/앱에 가상 키 발급, 예산·UI·SSO 등 조직 차원 운영 | ❌ (DB·프록시 필요) |
 
-> 이 저장소는 채택 기준(SDK 임베드, 별도 프로세스 불요) 에 따라 **SDK 모드만** 예제로 다룹니다. Proxy 가 필요하면 [공식 Quick Start](https://docs.litellm.ai/docs/proxy/quick_start) 참고.
+> 본 폴더는 **SDK 모드만** 예제로 다룹니다. Proxy 가 필요하면 [공식 Quick Start](https://docs.litellm.ai/docs/proxy/quick_start) 참고.
 
 ## TypeScript 지원
 

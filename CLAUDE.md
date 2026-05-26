@@ -9,36 +9,36 @@
 - **키는 절대 코드/예제에 하드코딩하지 말 것**: 항상 `.env.example` 로 안내.
 - **불필요한 추상화/래퍼 금지**: 학습 목적이므로 공식 SDK 호출 패턴을 그대로 노출.
 
-## 서비스 채택 기준 (엄격, 모두 만족해야 추가)
+## 서비스 선정 방침
 
-1. **무료** (OSS 또는 무료 사용량 호스팅)
-2. **SDK 만으로 내 앱에 임베드 가능** — 별도 게이트웨이/프록시 프로세스 없이 SDK 함수 호출만으로 완결되는 라이브러리여야 함
-3. **폐쇄망 가능** — 외부 호스팅 의존 없이 자체 LLM 백엔드(vLLM 등)에 연결 가능
+채택 기준은 별도로 두지 않습니다. 후보 서비스는 자유롭게 추가하되, **다음 두 축은 반드시 명시**합니다:
 
-위 3개 중 하나라도 안 맞으면 추가 금지. 제외 사유는 `docs/excluded-services.md` 에 기록.
+1. **비용 구분** — `무료 / 유료 / 부분 무료 (free tier 또는 BYOK)`
+2. **라이선스 구분** — `OSS (MIT / Apache 2.0 / 기타)` 또는 `Proprietary / Closed source` 등
 
-**자주 헷갈리는 케이스:**
-- "OSS이고 자체 호스팅 가능"은 채택 조건이 아님 — Portkey/Helicone 처럼 별도 게이트웨이 프로세스가 필요하면 제외.
-- "TS 네이티브 SDK 없으면 Python only" 로 표기.
-- 상용 서비스(NotDiamond, Martian 등)는 무조건 제외.
+같은 서비스라도 OSS 셀프호스팅은 무료, 호스팅/매니지드는 유료처럼 **모드별 라이선스·비용이 갈리는 경우** 가 많으므로 각 README 에 정확히 표기합니다.
 
 ## 서비스 폴더 구조 규칙
 
 ```
 <service>/
-├─ README.md       개요·강점·설치·실행·참고링크
-├─ python/         requirements.txt, .env.example, *.py
-└─ typescript/     (해당 서비스가 TS 네이티브 SDK 제공 시에만)
-    package.json, tsconfig.json, .env.example, *.ts
+├─ README.md       개요·강점·라이선스/비용·설치·실행·참고링크
+├─ python/         requirements.txt, .env.example, *.py   (코드 예제가 가능한 경우)
+└─ typescript/     package.json, tsconfig.json, .env.example, *.ts   (해당 서비스가 TS 네이티브 SDK 제공 시)
 ```
+
+- 코드 예제가 가능한 경우(SDK 임베드 또는 OpenAI 호환 endpoint 단순 호출)만 `python/`·`typescript/` 디렉토리를 둡니다.
+- **별도 게이트웨이 프로세스/K8s/대규모 인프라가 필요한 서비스** (Bifrost, Kong, Apache APISIX, Envoy AI Gateway 등)는 README 만 둡니다.
 
 ## README 섹션 (서비스별)
 
 1. **개요** — 1~2줄
-2. **무엇이 강점인가** — bullet 3개 이하
-3. **설치 & 환경변수**
-4. **실행**
-5. **참고 링크**
+2. **라이선스 / 비용** — OSS/Proprietary, 무료/유료, 부분 무료 여부 명시
+3. **강점** — bullet 3개 이하
+4. **사용 방식** — SDK / Proxy / 서버 등 어떤 모드가 있고 본 폴더는 어느 모드를 다루는지
+5. **설치 & 환경변수** — 코드 예제가 있는 경우만
+6. **실행** — 코드 예제가 있는 경우만
+7. **참고 링크**
 
 ## 커밋 정책
 
@@ -48,8 +48,8 @@
 
 ## 새 서비스 추가 절차
 
-1. 채택 기준 3개 확인 → 하나라도 미충족 시 `docs/excluded-services.md` 에 사유 추가.
-2. `gateways/` 또는 `routers/` 아래 폴더 생성.
-3. README + 언어별 예제 작성.
-4. 루트 `README.md` 의 채택 서비스 표 업데이트.
+1. `gateways/` 또는 `routers/` 아래 폴더 생성.
+2. README 에 라이선스 / 비용 / 강점 / 사용 방식 명시.
+3. SDK 임베드나 OpenAI 호환 endpoint 단순 호출이 가능하면 `python/`·`typescript/` 예제 추가, 아니면 README 만.
+4. 루트 `README.md`, `gateways/README.md`, `routers/README.md` 표 업데이트.
 5. 개별 커밋.

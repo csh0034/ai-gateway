@@ -1,6 +1,6 @@
 # AI Gateway vs LLM Router
 
-자주 혼용되지만 책임 레이어가 다르다. 본 문서에서 **AI Gateway** 는 provider 통합 호출 컴포넌트(LiteLLM, Portkey gateway 등)를 의미한다. OpenAI / Anthropic / Bedrock 등 서로 다른 API 를 단일 인터페이스로 묶고 토큰/비용 추적, fallback 을 담당하는 레이어다.
+자주 혼용되지만 책임 레이어가 다르다. 본 문서에서 **AI Gateway** 는 provider 통합 호출 컴포넌트(LiteLLM, Portkey, Helicone, Bifrost, OpenRouter, Cloudflare AI Gateway 등)를 의미한다. OpenAI / Anthropic / Bedrock 등 서로 다른 API 를 단일 인터페이스로 묶고 토큰/비용 추적, fallback 을 담당하는 레이어다.
 
 > 참고: Kong / Azure APIM / AWS 같은 **API Gateway 벤더가 자기 제품의 AI 확장을 "AI Gateway"로 부르는 경우**도 있다. 외부 자료를 읽을 때는 그 글이 말하는 "AI Gateway" 가 (a) API Gateway 의 AI 확장인지, (b) LLM provider 통합 컴포넌트인지 먼저 확인하는 편이 안전하다. 본 문서는 (b) 의 의미로 통일해 사용한다.
 
@@ -19,7 +19,7 @@
 | 1차 목적 | 외부 노출/보호 | 적합한 모델 선택 | provider 호출 통합 |
 | 결정 기준 | 정책(예산, 권한, 한도) | 프롬프트 특성(난이도, 도메인) | (결정 안 함, 위임 받음) |
 | 일반 기능 | 인증, 요금 추적, rate limit, 감사 | 모델 분류, 강·약모델 페어, threshold | OpenAI 호환 변환, 토큰 카운트, fallback |
-| 대표 구현 | Kong, Azure APIM, Nginx | RouteLLM, NVIDIA LLM Router, KORA | LiteLLM, Portkey gateway |
+| 대표 구현 | Kong, Azure APIM, Nginx | RouteLLM, Not Diamond, Martian, vLLM Semantic Router, NVIDIA LLM Router | LiteLLM, Portkey, Helicone, Bifrost, OpenRouter, Cloudflare AI Gateway, aisuite |
 
 ## 두 가지 자주 보이는 배치 패턴
 
@@ -65,10 +65,11 @@ KT 의 [KORA 아키텍처 소개 글](https://enterprise.kt.com/bt/dxstory/3691.
 
 | 상황 | 추천 |
 |---|---|
-| 빠른 프로토타입, 다수 provider 통합 호출 | LiteLLM (Python) — 통합형, SDK 임베드 |
-| 본격 운영: 외부 노출 + 정책 | 기존 API Gateway(Kong/APIM) 앞에 두고 LLM 스택은 뒤에 |
-| 본격 운영: 모델 선택 자동화 | LLM Router 별도 (RouteLLM 등) + 뒤에 LiteLLM 같은 AI Gateway |
-| 옵저버빌리티 우선 (비용/지연 추적) | AI Gateway 단의 로깅 활용 (LiteLLM 의 콜백 등) |
+| 빠른 프로토타입, 다수 provider 통합 호출 | LiteLLM (Python SDK) 또는 aisuite (Python SDK), 단일 키 SaaS 면 OpenRouter |
+| 본격 운영: 가상 키 / 예산 / UI / SSO | Portkey 또는 LiteLLM Proxy |
+| 본격 운영: 외부 노출 + 정책 | 기존 API Gateway(Kong AI Gateway / Apache APISIX / Envoy AI Gateway) 앞에 두고 LLM 스택은 뒤에 |
+| 본격 운영: 모델 선택 자동화 | LLM Router 별도 (RouteLLM / Not Diamond / Martian / vLLM Semantic Router) + 뒤에 AI Gateway |
+| 옵저버빌리티 우선 (비용/지연 추적) | Helicone, Cloudflare AI Gateway, Portkey |
 
 ## 주의점
 
