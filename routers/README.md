@@ -8,7 +8,7 @@ LLM Router 서비스 사용 예제 모음. 라우터는 입력 프롬프트의 �
 | [martian](./martian/) | Proprietary (백엔드 closed) | 부분 무료 (개발자 2,500 req 무료, 이후 종량제) | OpenAI 호환 SaaS | ✅ | 비용/품질 SLA, willingness-to-pay 정책, 자동 페일오버 |
 | [notdiamond](./notdiamond/) | Proprietary | 부분 무료 (free tier + 유료) | Python + TS SDK (라우팅 추천 + 자체 호출) | ✅ | 프롬프트별 모델 추천(10~100ms), client-side 실행 |
 | [vllm-semantic-router](./vllm-semantic-router/) | Apache 2.0 | 무료 | Envoy ExtProc 서버 (K8s) | ❌ | Mixture-of-Models 의미 기반 라우팅, vLLM 생태계 |
-| [nvidia-llm-router](./nvidia-llm-router/) | MIT (소스) + 모델별 별도 라이선스 | 무료 (NIM 호스팅 비용 별도) | NIM + Triton 서버 | ❌ | NVIDIA 공식 Blueprint, 복잡도/태스크 분류기 모델 동봉 |
+| [nvidia-llm-router](./nvidia-llm-router/) | Apache 2.0 (소스) + 모델별 별도 라이선스 | 무료 (NIM 호스팅 비용 별도) | NIM + Triton 서버 | ❌ | NVIDIA 공식 Blueprint, 복잡도/태스크 분류기 모델 동봉 |
 
 ## 책임 비교 요약
 

@@ -32,7 +32,7 @@ ai-gateway/
 | 서비스 | 라이선스 | 비용 | 언어 SDK | 코드 예제 |
 |---|---|---|---|---|
 | [LiteLLM](./gateways/litellm/) | OSS (MIT, `enterprise/`는 상용) | 무료 (Cloud 매니지드는 유료) | Python only | ✅ |
-| [Portkey Gateway](./gateways/portkey/) | OSS (Apache 2.0) | 무료 (호스팅·엔터프라이즈는 유료) | Python + TS | ✅ |
+| [Portkey Gateway](./gateways/portkey/) | OSS (MIT, 메인 LICENSE 기준) | 무료 (호스팅·엔터프라이즈는 유료) | Python + TS | ✅ |
 | [Helicone](./gateways/helicone/) | OSS (Apache 2.0) | 무료 (호스팅 SaaS 는 부분 유료) | OpenAI SDK 재사용 (Py + TS) | ✅ |
 | [OpenRouter](./gateways/openrouter/) | Proprietary (백엔드 closed) | 부분 무료 (BYOK 월 1M req 무료 / 크레딧 마진) | OpenAI 호환 (Py + TS) | ✅ |
 | [Cloudflare AI Gateway](./gateways/cloudflare-ai-gateway/) | Proprietary | 부분 무료 (Workers 무료/유료 플랜) | OpenAI 호환 (Py + TS) | ✅ |
@@ -52,7 +52,7 @@ ai-gateway/
 | [Martian](./routers/martian/) | Proprietary (백엔드 closed) | 부분 무료 (개발자 2,500 req 무료) | OpenAI 호환 (Py + TS) | ✅ |
 | [Not Diamond](./routers/notdiamond/) | Proprietary | 부분 무료 (free tier + 유료) | Python + TS SDK | ✅ |
 | [vLLM Semantic Router](./routers/vllm-semantic-router/) | OSS (Apache 2.0) | 무료 | Envoy ExtProc 서버 | ❌ (README only) |
-| [NVIDIA LLM Router (Blueprint)](./routers/nvidia-llm-router/) | OSS (MIT, 모델은 별도 라이선스) | 무료 (NIM 호스팅 비용 별도) | NIM/Triton 서버 | ❌ (README only) |
+| [NVIDIA LLM Router (Blueprint)](./routers/nvidia-llm-router/) | OSS (Apache 2.0, 모델은 별도 라이선스) | 무료 (NIM 호스팅 비용 별도) | NIM/Triton 서버 | ❌ (README only) |
 
 > 비고: `gateways/` vs `routers/` 분류는 **1차 책임 레이어** 기준입니다. LiteLLM 처럼 라우팅 기능도 갖춘 게이트웨이는 Gateway 로 분류했습니다.
 

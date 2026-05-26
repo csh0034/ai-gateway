@@ -1,2 +1,5 @@
-aisuite[all]>=0.1.11
+aisuite>=0.1.11
+# 사용할 provider 만 골라서 함께 설치 (전체는 aisuite[all] 도 가능)
+aisuite[anthropic]>=0.1.11
+aisuite[openai]>=0.1.11
 python-dotenv>=1.0.1

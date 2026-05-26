@@ -5,7 +5,7 @@ NVIDIA 가 공개한 LLM 라우터 reference 아키텍처. 입력 프롬프트�
 ## 라이선스 / 비용
 
 - **라이선스 (분리)**:
-  - 소스 코드 (라우터 구현체): MIT.
+  - 소스 코드 (라우터 구현체): **Apache 2.0** (NVIDIA Corporation).
   - 분류기 모델 (Complexity / Task Qualifier): NVIDIA Open Model License.
   - 라우팅 대상 모델: NVIDIA AI Foundation Models Community License + 모델별 라이선스.
 - **비용**:

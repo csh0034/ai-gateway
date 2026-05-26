@@ -7,8 +7,8 @@
 | 서비스 | 라이선스 | 비용 | 모드 | Py SDK | TS SDK | 코드 예제 |
 |---|---|---|---|---|---|---|
 | LiteLLM | OSS (MIT) · `enterprise/` 상용 | 무료 (Cloud 유료) | SDK + Proxy | ✅ | ❌ | ✅ Py |
-| Portkey | OSS (Apache 2.0) | 무료 (호스팅 유료) | Gateway 서버 + SDK | ✅ | ✅ | ✅ Py + TS |
-| Helicone | OSS (Apache 2.0) | 무료 (Cloud 부분 유료) | Proxy | (OpenAI SDK) | (OpenAI SDK) | ✅ Py + TS |
+| Portkey | OSS (MIT, 메인 LICENSE 기준) | 무료 (호스팅 유료) | Gateway 서버 + SDK | ✅ | ✅ | ✅ Py + TS |
+| Helicone | OSS (Apache 2.0) — ⚠️ maintenance mode | 무료 (Cloud 부분 유료) | Proxy | (OpenAI SDK) | (OpenAI SDK) | ✅ Py + TS |
 | OpenRouter | Proprietary | 부분 무료 (BYOK 1M/월) | SaaS (OpenAI 호환) | (OpenAI SDK) | (OpenAI SDK) | ✅ Py + TS |
 | Cloudflare AI Gateway | Proprietary | 부분 무료 (Workers Free/Paid) | SaaS Proxy | (OpenAI SDK) | (OpenAI SDK) | ✅ Py + TS |
 | aisuite | OSS (MIT) | 무료 | SDK | ✅ | ❌ | ✅ Py |
@@ -27,7 +27,7 @@
 | Martian | Proprietary | 부분 무료 (2,500 req free) | SaaS (OpenAI 호환) | (OpenAI SDK) | (OpenAI SDK) | ✅ Py + TS |
 | Not Diamond | Proprietary | 부분 무료 (free tier + 유료) | 추천 API | ✅ | ✅ | ✅ Py + TS |
 | vLLM Semantic Router | OSS (Apache 2.0) | 무료 | Envoy ExtProc | (OpenAI SDK) | (OpenAI SDK) | ❌ |
-| NVIDIA LLM Router | OSS (MIT) + 모델 별도 라이선스 | 무료 (GPU/NIM 비용 별도) | NIM/Triton 서버 | (OpenAI SDK) | (OpenAI SDK) | ❌ |
+| NVIDIA LLM Router | OSS (Apache 2.0) + 모델 별도 라이선스 | 무료 (GPU/NIM 비용 별도) | NIM/Triton 서버 | (OpenAI SDK) | (OpenAI SDK) | ❌ |
 
 > `(OpenAI SDK)` 는 별도 전용 SDK 없이 OpenAI SDK 의 `base_url` 을 게이트웨이로 가리켜 사용한다는 뜻입니다.
 

@@ -7,8 +7,8 @@ AI Gateway 서비스 사용 예제 모음. 카테고리·라이선스·비용을
 | 서비스 | 라이선스 | 비용 | 모드 | 코드 예제 | 한 줄 강점 |
 |---|---|---|---|---|---|
 | [litellm](./litellm/) | MIT (`enterprise/`는 상용) | 무료 | Python SDK + (선택) Proxy 서버 | ✅ | 100+ provider 통합 호출, SDK 임베드만으로 라우팅·폴백·비용 추적 |
-| [portkey](./portkey/) | Apache 2.0 (2026.04 OSS화 완료) | 무료 (호스팅·엔터프라이즈는 유료) | Gateway 서버 + Py/TS SDK | ✅ | 1600+ 모델, 가드레일·옵저버빌리티 내장, edge 배포 가능 |
-| [helicone](./helicone/) | Apache 2.0 | 무료 (호스팅 SaaS 부분 유료) | Proxy (OpenAI SDK 의 baseURL 변경) | ✅ | 옵저버빌리티 1급, 1줄 통합, 셀프호스팅 가능 |
+| [portkey](./portkey/) | MIT (메인 LICENSE 기준, 2026.03 프로덕션 게이트웨이 OSS 머지) | 무료 (호스팅·엔터프라이즈는 유료) | Gateway 서버 + Py/TS SDK | ✅ | 1600+ 모델, 가드레일·옵저버빌리티 내장, edge 배포 가능 |
+| [helicone](./helicone/) | Apache 2.0 | 무료 (호스팅 SaaS 부분 유료) | Proxy (OpenAI SDK 의 baseURL 변경) | ✅ | 옵저버빌리티 1급, 1줄 통합, 셀프호스팅 가능 (⚠️ 2026.03 Mintlify 인수 후 maintenance mode) |
 | [openrouter](./openrouter/) | Proprietary (백엔드 closed) | 부분 무료 (BYOK 월 1M req 무료) | OpenAI 호환 SaaS | ✅ | 400+ 모델 단일 키, openrouter/auto 자동 라우팅 |
 | [cloudflare-ai-gateway](./cloudflare-ai-gateway/) | Proprietary | 부분 무료 (Workers Free/Paid) | 호스팅 프록시 (URL 재작성) | ✅ | Cloudflare edge 캐시·rate limit, 분석 대시보드 |
 | [aisuite](./aisuite/) | MIT | 무료 | Python SDK 임베드 | ✅ | 매우 가벼운 통합 SDK, `provider:model` 한 줄 |
