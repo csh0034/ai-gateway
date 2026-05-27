@@ -10,6 +10,8 @@
 - **비용**: **부분 무료** — free tier 후 종량제 + 엔터프라이즈 플랜.
 - **폐쇄망**: △ — 추천 API 호출은 Not Diamond 클라우드, 최종 LLM 호출은 본인 환경에서 실행되므로 LLM 호출 자체는 폐쇄망 가능.
 
+> ⚠️ **Python SDK 동결**: [`notdiamond-python`](https://github.com/Not-Diamond/notdiamond-python) 저장소가 2025-12 에 GitHub **archived** 처리됐습니다. SaaS·API 자체의 종료를 뜻하지는 않으나(백엔드는 별개), SDK 신규 기능·버그 수정은 기대하기 어렵습니다. 도입 전 [공식 문서](https://docs.notdiamond.ai)에서 API 운영 상태를 확인하세요.
+
 ## 강점
 
 - 추천만 받고 호출은 client 가 하므로 **데이터 잔존 통제**가 쉬움 (프롬프트가 LLM provider 직행).

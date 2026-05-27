@@ -46,13 +46,13 @@ ai-gateway/
 
 ### Router 카테고리
 
-| 서비스 | 라이선스 | 비용 | 언어 SDK | 코드 예제 |
-|---|---|---|---|---|
-| [RouteLLM](./routers/routellm/) | OSS (Apache 2.0) | 무료 | Python only | ✅ |
-| [Martian](./routers/martian/) | Proprietary (백엔드 closed) | 부분 무료 (개발자 2,500 req 무료) | OpenAI 호환 (Py + TS) | ✅ |
-| [Not Diamond](./routers/notdiamond/) | Proprietary | 부분 무료 (free tier + 유료) | Python + TS SDK | ✅ |
-| [vLLM Semantic Router](./routers/vllm-semantic-router/) | OSS (Apache 2.0) | 무료 | Envoy ExtProc 서버 | ❌ (README only) |
-| [NVIDIA LLM Router (Blueprint)](./routers/nvidia-llm-router/) | OSS (Apache 2.0, 모델은 별도 라이선스) | 무료 (NIM 호스팅 비용 별도) | NIM/Triton 서버 | ❌ (README only) |
+| 서비스 | 라이선스 | 비용 | 언어 SDK | 코드 예제 | 유지보수 |
+|---|---|---|---|---|---|
+| [vLLM Semantic Router](./routers/vllm-semantic-router/) | OSS (Apache 2.0) | 무료 | Envoy ExtProc 서버 | ❌ (README only) | 🟢 활발 (~2026-05) |
+| [NVIDIA LLM Router (Blueprint)](./routers/nvidia-llm-router/) | OSS (Apache 2.0, 모델은 별도 라이선스) | 무료 (NIM 호스팅 비용 별도) | NIM/Triton 서버 | ❌ (README only) | 🟢 활발 (~2026-05) |
+| [RouteLLM](./routers/routellm/) | OSS (Apache 2.0) | 무료 | Python only | ✅ | 🔴 정체 (2024-08~) |
+| [Not Diamond](./routers/notdiamond/) | Proprietary | 부분 무료 (free tier + 유료) | Python + TS SDK | ✅ | ⚠️ SDK 아카이브 (2025-12) |
+| [Martian](./routers/martian/) | Proprietary (백엔드 closed) | 부분 무료 (개발자 2,500 req 무료) | OpenAI 호환 (Py + TS) | ✅ | ⚫ 측정 불가 (closed) |
 
 > 비고: `gateways/` vs `routers/` 분류는 **1차 책임 레이어** 기준입니다. LiteLLM 처럼 라우팅 기능도 갖춘 게이트웨이는 Gateway 로 분류했습니다.
 
