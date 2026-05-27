@@ -2,6 +2,8 @@
 
 AI Gateway 및 LLM Router 개념 정리 + 주요 서비스들의 사용 예제 모음.
 
+![ai-gateway demo](./route.gif)
+
 ## 개념 요약
 
 - **AI Gateway**: 다수 LLM provider 앞에 두는 통합 API/프록시 레이어. 인증/요금/로깅/페일오버/가드레일을 한 곳에서 처리.
